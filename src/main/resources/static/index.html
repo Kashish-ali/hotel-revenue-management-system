@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Hotel Revenue Management</title><link rel="stylesheet" href="style.css"></head>
+<body><header><div><h1>Hotel Revenue Management</h1><p>Booking, occupancy and revenue analytics</p></div></header>
+<main>
+<section class="stats"><article><span>Total Revenue</span><strong id="revenue">₹0</strong></article><article><span>Total Bookings</span><strong id="bookings">0</strong></article><article><span>Occupied Rooms</span><strong id="occupied">0/0</strong></article><article><span>Occupancy</span><strong id="occupancy">0%</strong></article></section>
+<section class="grid"><div class="card"><h2>Rooms</h2><table><thead><tr><th>Room</th><th>Type</th><th>Base Price</th><th>Status</th></tr></thead><tbody id="rooms"></tbody></table></div>
+<div class="card"><h2>Dynamic Pricing Recommendations</h2><div id="pricing"></div></div></section>
+<section class="card"><h2>Create Customer</h2><form id="customerForm"><input id="name" placeholder="Name" required><input id="email" type="email" placeholder="Email" required><input id="phone" placeholder="Phone" required><button>Create Customer</button></form><p id="customerMsg"></p></section>
+<section class="card"><h2>Create Booking</h2><form id="bookingForm"><input id="customerId" type="number" placeholder="Customer ID" required><input id="roomId" type="number" placeholder="Room ID" required><label>Check-in <input id="checkIn" type="date" required></label><label>Check-out <input id="checkOut" type="date" required></label><input id="guests" type="number" min="1" value="2" required><button>Create Booking</button></form><p id="bookingMsg"></p></section>
+</main><script src="app.js"></script></body></html>

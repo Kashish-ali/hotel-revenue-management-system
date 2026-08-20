@@ -1,0 +1,32 @@
+CREATE DATABASE IF NOT EXISTS hotel_revenue;
+USE hotel_revenue;
+
+CREATE TABLE IF NOT EXISTS customers (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(150) NOT NULL UNIQUE,
+  phone VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS rooms (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  room_number VARCHAR(20) NOT NULL UNIQUE,
+  room_type VARCHAR(40) NOT NULL,
+  base_price DECIMAL(10,2) NOT NULL,
+  status ENUM('AVAILABLE','BOOKED','MAINTENANCE') NOT NULL DEFAULT 'AVAILABLE'
+);
+
+CREATE TABLE IF NOT EXISTS bookings (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  customer_id BIGINT NOT NULL,
+  room_id BIGINT NOT NULL,
+  check_in DATE NOT NULL,
+  check_out DATE NOT NULL,
+  guests INT NOT NULL,
+  total_amount DECIMAL(12,2) NOT NULL,
+  status ENUM('CONFIRMED','CHECKED_IN','COMPLETED','CANCELLED') NOT NULL DEFAULT 'CONFIRMED',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_booking_customer FOREIGN KEY(customer_id) REFERENCES customers(id),
+  CONSTRAINT fk_booking_room FOREIGN KEY(room_id) REFERENCES rooms(id),
+  INDEX idx_booking_room_dates(room_id, check_in, check_out)
+);
